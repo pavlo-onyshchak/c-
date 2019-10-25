@@ -15,15 +15,15 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="C:\Users\hp\source\repos\Map\Map\BinaryFunctions.cpp">
+    <ClCompile Include="BinaryFunctions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\hp\source\repos\Map\Map\Main.cpp">
+    <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="C:\Users\hp\source\repos\Map\Map\BinaryFunctions.h">
+    <ClInclude Include="BinaryFunctions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
