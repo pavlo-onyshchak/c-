@@ -1,12 +1,12 @@
 #include"BinaryFunctions.h"
 
-bool isOdd(int number)
+bool isOdd(int& number)
 {
     auto mask = 0b0001;
     return number & mask;
 }
 
-int addOne(int number)
+int addOne(int& number)
 {
     auto mask = 1;
     while (number & mask)
@@ -18,7 +18,7 @@ int addOne(int number)
     return number;
 }
 
-int countOfBinaryUnits(int number)
+int countOfBinaryUnits(int& number)
 {
     const auto mask = 1;
     auto counter = 0;
@@ -33,8 +33,7 @@ int countOfBinaryUnits(int number)
     return counter;
 }
 
-long long setBits(long long number,int count_of_bits)
-
+long long setBits(long long& number, int count_of_bits)
 {
     for (int i = 0; i < count_of_bits; i++)
     {
@@ -42,9 +41,64 @@ long long setBits(long long number,int count_of_bits)
         {
             number &= ~(1ll << i);
         }
-        else {
+        else 
+        {
             number |= (1ll << i);
         }
     }
     return number;
+}
+
+int sumOfTwoElem(int& first, int& second)
+{
+    const auto bitsNumber = 32;
+    auto sum = 0;
+    auto mask = 1;
+    auto carry = 0;
+    for (int i = 0; i < bitsNumber; i++)
+    {
+        if (first & (mask<<i) && second & (mask<<i))
+        {
+            sum &= ~(mask<<i);
+            carry = 1;
+        }
+        else if (!(first & (mask << i)) && second & (mask << i))
+        {
+            if (carry == 1)
+            {
+                sum &= (mask << i);
+            }
+            else
+            {
+                sum |= (mask << i);
+                carry = 0;
+            }
+        }
+        else if (first & (mask << i) && !(second & (mask << i)))
+        {
+            if (carry == 1)
+            {
+                sum &= (mask << i);
+            }
+            else
+            {
+                sum |= (mask << i);
+                carry = 0;
+            }
+        }
+        else
+        {
+            if (carry == 1)
+            {
+                sum |= (mask << i);
+                carry = 0;
+            }
+            else
+            {
+                sum &= ~(mask << i);
+                carry = 0;
+            }
+        }
+    }
+    return sum;
 }
