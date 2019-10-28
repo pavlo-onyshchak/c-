@@ -1,3 +1,5 @@
-﻿  Main.cpp
+﻿  BinaryFunctions.cpp
+  Main.cpp
+  Generating Code...
 D:\cppTasks\BinaryOperaitions\BinaryOperaitions\Main.cpp(6,1): warning C4326:  return type of 'main' should be 'int' instead of 'void'
   BinaryOperaitions.vcxproj -> D:\cppTasks\BinaryOperaitions\Debug\BinaryOperaitions.exe
