@@ -10,7 +10,7 @@ public:
     size_t size();
     int& top();
     bool empty();
-    bool test();
+    static bool test();
 private:
     vector <int> _vec;
  };

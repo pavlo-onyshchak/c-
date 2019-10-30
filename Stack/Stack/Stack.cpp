@@ -20,16 +20,12 @@ size_t Stack::size()
 
 int& Stack::top()
 {
-    return _vec[_vec.size() - 1];
+   return _vec.back();
 }
 
 bool Stack::empty()
 {
-    if (!_vec.size())
-    {
-        return true;
-    }
-    return false;
+    return _vec.empty();
 }
 
 bool Stack::test()
@@ -37,30 +33,31 @@ bool Stack::test()
     stack <int> stl_stack;
     stl_stack.push(10);
     stl_stack.push(12);
+    stl_stack.push(20);
+    Stack my_stack;
+    my_stack.push(10);
+    my_stack.push(12);
+    my_stack.push(20);
 
-    this->push(10);
-    this->push(12);
-
-    if (stl_stack.top() != this->top())
+    for (int i = 0; i < stl_stack.size(); i++)
     {
-        throw exception("top function is invalid");
-    }
+        if (stl_stack.top() != my_stack.top())
+        {
+            throw exception("top function is invalid");
+        }
 
-    if (stl_stack.size() != this->size())
-    {
-        throw exception("size function is invalid");
-    }
+        if (stl_stack.size() != my_stack.size())
+        {
+            throw exception("size function is invalid");
+        }
 
-    if (stl_stack.empty() != this->empty())
-    {
-        throw exception("empty function is invalid");
-    }
+        if (stl_stack.empty() != my_stack.empty())
+        {
+            throw exception("empty function is invalid");
+        }
 
-    stl_stack.pop();
-    this->pop();
-    if ((stl_stack.top() != this->top()) || (stl_stack.size() != this->size()))
-    {
-        throw exception("pop function is invalid");
+        stl_stack.pop();
+        my_stack.pop();
     }
 
     return true;
