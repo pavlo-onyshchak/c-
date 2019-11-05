@@ -8,5 +8,6 @@
 *.idb
 *.exe
 .vs/
+.debug/
 
 
