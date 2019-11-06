@@ -1,12 +1,13 @@
 #include "Iterator.h"
 
-Iterator::Iterator(Node* node)
+
+Iterator::Iterator(shared_ptr<Map::node> node)
 {
     _iter = node;
-    _data = &node->_data;
+    data = &node->data;
 }
 
 pair<int, string>* Iterator::operator->()
 {
-    return _data;
+    return data;
 }

@@ -1,15 +1,16 @@
 #pragma once
 #include <string>
 #include "Map.h"
+
 using namespace std;
 
 class Iterator
 {
 public:
     Iterator() = default;
-    Iterator(Node* node);
+    Iterator(shared_ptr<Map::node> node);
     pair<int, string>* operator->();
 private:
-    Node* _iter;
-    pair<int, string>* _data;
+    shared_ptr <Map::node> _iter;
+    pair<int, string>* data;
 };

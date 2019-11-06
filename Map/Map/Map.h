@@ -1,23 +1,30 @@
 #pragma once
 #include <vector>
-#include<string>
+#include <string>
+#include <memory>
+
 using namespace std;
 
 class Iterator;
 
-struct Node
-{
-    pair<int, string> _data;
-    Node* _right = nullptr;
-    Node* _left = nullptr;
-};
-
-
 class Map
 {
+private:
+    struct Node
+    {
+        pair<int, string> data;
+        shared_ptr<Node> right = nullptr;
+        shared_ptr<Node> left = nullptr;
+        Node() = default;
+        Node(pair<int,string> key_val)
+        {
+            data = key_val;
+        }
+    };
 public:
     using key_val = pair<int, string>;
     using key = int;
+    using node = Node;
 
     Map() = default;
     Map(initializer_list<key_val> init);
@@ -28,15 +35,14 @@ public:
     bool empty();
     void erase(const key& key);
     void show();
+    static bool test();
 private:
-    void insert(const key_val& val, Node* node);
-    void traversal(Node* node);
-    Node* erase(Node* node, key data);
-    Node* FindMax(Node* root);
-    void show(Node* node);
-    size_t _size = 0;
-    Node* _root = nullptr;
-    Node* _right_ptr = nullptr;
-    Node* _left_ptr = nullptr;
+    void insert(const key_val& val, shared_ptr<node> node);
+    size_t traversal(shared_ptr<node> node,size_t& size);
+    void show(shared_ptr<node> node);
+    shared_ptr<node> erase(shared_ptr<node>& node, key data);
+    shared_ptr<node> findMax(shared_ptr<node> root);
+   private:
+    shared_ptr<node> _root = nullptr;
     pair<string, int> _map_data;
 };
