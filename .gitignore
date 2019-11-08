@@ -1,5 +1,7 @@
 *.suo
 *.tlog
+*.vcxproj
+*.ilk
 *.log
 *.pdb
 *.opendb
@@ -10,3 +12,4 @@
 .vs/
 .Debug/
 .x64/
+.Debug/Vector.ilk
