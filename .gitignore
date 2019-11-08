@@ -1,0 +1,12 @@
+*.suo
+*.tlog
+*.log
+*.pdb
+*.opendb
+*.ipch
+*.obj
+*.idb
+*.exe
+.vs/
+.Debug/
+.x64/
