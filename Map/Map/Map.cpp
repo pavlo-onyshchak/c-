@@ -7,7 +7,7 @@
 Iterator Map::find(const key& key)
 {
     auto node = _root;
-    while (key != node->data.first)
+    while (node && key != node->data.first)
     {
         if (key > node->data.first)
         {
@@ -17,12 +17,8 @@ Iterator Map::find(const key& key)
         {
             node = node->left;
         }
-        if (!node)
-        {
-            break;
-        }
     }
-    return { node };
+    return { node.get(),_root.get() };
  }
 
 Iterator Map::begin()
@@ -32,7 +28,7 @@ Iterator Map::begin()
     {
         ptr = ptr->left;
     }
-    return { ptr };
+    return { ptr.get(),_root.get() };
 }
 
 void Map::insert(const key_val& data, shared_ptr<node> node)

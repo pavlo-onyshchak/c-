@@ -1,13 +1,59 @@
 #include "Iterator.h"
 
-
-Iterator::Iterator(shared_ptr<Map::node> node)
+void Iterator::traversal(Map::node* node)
 {
-    _iter = node;
-    data = &node->data;
+    if (!node)
+    {
+        return;
+    }
+    traversal(node->left.get());
+    _vec.push_back(node);
+    traversal(node->right.get());
 }
 
-pair<int, string>* Iterator::operator->()
+Iterator::Iterator(Map::node* node,Map::node* root)
 {
-    return data;
+    _iter = node;
+    _data = node->data;
+    traversal(root);
+}
+
+Map::key_val* Iterator::operator->()
+{
+    return &_data;
+}
+
+Map::key_val& Iterator::operator*()
+{
+    return _data;
+}
+
+Iterator Iterator::operator++(int)
+{
+    auto it = *this;
+    for (auto i = 0; i < _vec.size(); i++)
+    {
+        if (this->_iter == _vec[i])
+        {
+            this->_iter = _vec[i+1];
+            this->_data = _vec[i+1]->data;
+            break;
+        }
+    }
+    return it;
+}
+
+Iterator Iterator::operator--(int)
+{
+    auto it = *this;
+    for (auto i = 0; i < _vec.size(); i++)
+    {
+        if (this->_iter == _vec[i])
+        {
+            this->_iter = _vec[i-1];
+            this->_data = _vec[i-1]->data;
+            break;
+        }
+    }
+    return it;
 }

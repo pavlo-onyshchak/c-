@@ -8,6 +8,6 @@
 *.idb
 *.exe
 .vs/
-.debug/
-
+Debug/
+*.vcxproj
 

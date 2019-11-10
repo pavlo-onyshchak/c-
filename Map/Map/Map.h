@@ -22,6 +22,7 @@ private:
         }
     };
 public:
+    using iterator = Iterator;
     using key_val = pair<int, string>;
     using key = int;
     using node = Node;
@@ -44,5 +45,4 @@ private:
     shared_ptr<node> findMax(shared_ptr<node> root);
    private:
     shared_ptr<node> _root = nullptr;
-    pair<string, int> _map_data;
 };

@@ -4,8 +4,8 @@
 #include <map>
 
 using namespace std;
+
 int main()
 {
-    cout << Map::test();
     return 0;
 }
