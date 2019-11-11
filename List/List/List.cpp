@@ -7,41 +7,54 @@ using namespace std;
 
 List::List()
 {
-    auto* node = new Node();
+    auto node = make_shared<Node>(0);
     _end = node;
-    _end->next = nullptr;
-    node->key = 0;
 }
 
 void List::push_back(const int& val)
 {
     if (_head == nullptr)
     {
-        auto* node = new Node();
-       _head = node;
-        node->key = val;
+        auto node = make_shared<Node>(val);
         node->next = _end;
+       _head = node;
     }
     else 
     {
-        auto* node = new Node();
-        auto* it = _head;
+        auto node = make_shared<Node>(val);
+        auto it = _head;
         while (it->next != _end)
         {
             it = it->next;
         }
         it->next = node;
         node->next = _end;
-        node->key = val;
      }
+}
+
+void List::push_front(const int& val)
+{
+    if (_head == nullptr)
+    {
+        auto node = make_shared<Node>(val);
+        node->next = _end;
+        _head = node;
+    }
+    else
+    {
+        auto node = make_shared<Node>(val);
+        auto it = _head;
+        _head = node;
+        node->next = it;
+    }
 }
 
 void List::pop_back()
 {
-    auto* ptr = _head;
+    auto ptr = _head;
     if (this->size() == 1)
     {
-        _head = nullptr;
+        _head.reset();
         return;
     }
     while (ptr->next->next != _end)
@@ -51,23 +64,31 @@ void List::pop_back()
     ptr->next = _end;
 }
 
-Iterator List::begin()
+void List::pop_front()
 {
-    Iterator it(_head);
-    return it;
+    if (this->size() == 1)
+    {
+        _head.reset();
+        return;
+    }
+    _head = _head->next;
 }
 
-Iterator List::end()
+Iterator List::begin() const
 {
-    Iterator it(_end);
-    return it;
+    return { _head.get() };
+}
+
+Iterator List::end() const
+{
+    return { _end.get() };
 }
 
 
 size_t List::size()
 {
     auto size = 0;
-    auto* ptr = _head;
+    auto ptr = _head;
     if (ptr == nullptr)
     {
         return 0;
@@ -80,13 +101,9 @@ size_t List::size()
     return size;
 }
 
-bool List::empty()
+bool List::empty() const
 {
-    if (_head)
-    {
-        return false;
-    }
-    return true;
+    return _head == nullptr;
 }
 
 void List::show()

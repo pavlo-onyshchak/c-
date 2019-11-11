@@ -1,36 +1,28 @@
 #include "Iterator.h"
 
-Iterator::Iterator(Node* node)
+Iterator::Iterator(List::Node* node)
 {
     _iter = node;
 }
 
 Iterator Iterator::operator++(int)
 {
-    Iterator it = *this;
+    auto it = *this;
     if (_iter->next != nullptr)
     {
-        this->_iter = this->_iter->next;
+        this->_iter = this->_iter->next.get();
     }
     return it;
 }
 
-bool Iterator::operator==(Iterator& it)
+bool Iterator::operator==(const Iterator& it) const
 {
-    if (this->_iter != it._iter)
-    {
-        return false;
-    }
-    return true;
+    return this->_iter != it._iter;
 }
 
-bool Iterator::operator!=(Iterator& it)
+bool Iterator::operator!=(const Iterator& it) const
 {
-    if (this->_iter == it._iter)
-    {
-        return false;
-    }
-    return true;
+    return this->_iter == it._iter;
 }
 
 int& Iterator::operator*()

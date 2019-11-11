@@ -1,26 +1,34 @@
 #pragma once
+#include <memory>
+
+using namespace std;
 
 class Iterator;
 
-struct Node
-{
-    int key;
-    Node* next;
-};
-
 class List
 {
+private:
+    struct Node
+    {
+        Node(int val) :key(val) {};
+        int key;
+        shared_ptr<Node> next = nullptr;
+    };
 public:
+    using iterator = Iterator;
+    friend class Iterator;
     List();
     void push_back(const int& val);
+    void push_front(const int& val);
     void pop_back();
-    Iterator begin();
-    Iterator end();
+    void pop_front();
+    Iterator begin() const;
+    Iterator end() const;
     size_t size();
-    bool empty();
+    bool empty() const;
     void show();
     static bool test();
 private:
-    Node* _head = nullptr;
-    Node* _end = nullptr;
+    shared_ptr<Node> _head = nullptr;
+    shared_ptr<Node> _end = nullptr;
 };

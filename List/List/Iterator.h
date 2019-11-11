@@ -5,12 +5,12 @@ class Iterator
 {
 public:
     Iterator() = default;
-    Iterator(Node* node);
+    Iterator(List::Node* node);
     Iterator operator++(int);
-    bool operator==(Iterator& it);
-    bool operator !=(Iterator& it);
+    bool operator==(const Iterator& it) const;
+    bool operator !=(const Iterator& it) const;
     int& operator*();
  
 private:
-    Node* _iter;
+    List::Node* _iter;
 };
