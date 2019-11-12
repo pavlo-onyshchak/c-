@@ -1,5 +1,6 @@
 *.suo
 *.tlog
+*.ilk
 *.log
 *.pdb
 *.opendb
@@ -7,15 +8,9 @@
 *.obj
 *.idb
 *.exe
-<<<<<<< HEAD
-.vs/
-Debug/
-*.vcxproj
-=======
 *.filters
 *.user
-.vs/
 Debug/
-
->>>>>>> List
+.vs/
+x64/
 
