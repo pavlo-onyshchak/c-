@@ -6,5 +6,5 @@ using namespace std;
 
 void main()
 {
-   cout <<  List::test() <<endl;
+    cout << List::test() << endl;
 }

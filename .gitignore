@@ -7,7 +7,15 @@
 *.obj
 *.idb
 *.exe
+<<<<<<< HEAD
 .vs/
 Debug/
 *.vcxproj
+=======
+*.filters
+*.user
+.vs/
+Debug/
+
+>>>>>>> List
 
